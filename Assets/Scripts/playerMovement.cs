@@ -16,6 +16,12 @@ public class playerMovement : MonoBehaviour
     public float gravityFall = 10f;
     public float jumpLimit = 2f;
 
+    bool keyObtain = false;
+
+    //public GameObject doorText;
+    //public GameObject keyObtained;
+
+
     Animator myAnim;
 
     bool jump = false;
@@ -24,6 +30,9 @@ public class playerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        //keyObtained.SetActive(false);
+       //doorText.SetActive(false);
         myBody = GetComponent<Rigidbody2D>();
         //pointing to the specific RigidBody2D in the chara
         myAnim = GetComponent<Animator>();
@@ -34,33 +43,25 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
-        //associates with typical horizontal inputs (A/D, L/R arrow)
-
-        //Vector3 newPos = transform.position;
-
-        //if (Input.GetKey(KeyCode.D))
-        //{ newPos.x += horizontalMove; }
-        //if (Input.GetKey(KeyCode.A))
-        //{ newPos.x -= horizontalMove; }
-
-       // transform.position = newPos;
+ 
        if (Input.GetButtonDown("Jump"))
         {
             print("a");
         }
+
         if (Input.GetButtonDown("Jump") && grounded)
         {
             jump = true;
         }
-        if (horizontalMove > 0.2f || horizontalMove < -0.2f)
-        {
+        //if (horizontalMove > 0.2f || horizontalMove < -0.2f)
+        //{
            // myAnim.SetBool("walking", true);
-        }
+       // }
 
-        else
-        {
+        //else
+       // {
            // myAnim.SetBool("walking", false);
-        }
+       // }
     }
     void FixedUpdate()
     {
@@ -92,6 +93,20 @@ public class playerMovement : MonoBehaviour
             grounded = false;
         }
         myBody.velocity = new Vector3(moveSpeed, myBody.velocity.y, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "key")
+        {
+            keyObtain = true;
+            Destroy(collision.gameObject);
+        }
+
+        if (keyObtain && collision.gameObject.name == "door") 
+            {
+                //go to next room if key obtained and person collides w door
+            } 
     }
 }
 
