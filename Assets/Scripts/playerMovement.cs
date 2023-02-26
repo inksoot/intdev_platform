@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerMovement : MonoBehaviour
 {
@@ -105,8 +106,12 @@ public class playerMovement : MonoBehaviour
 
         if (keyObtain && collision.gameObject.name == "door") 
             {
-                //go to next room if key obtained and person collides w door
-            } 
+            //go to next room if key obtained and person collides w door
+            // SceneManager.GetSceneByName("Level2");
+
+            SceneManager.LoadScene("Level2");
+            //SceneManager.LoadScene(2);
+        } 
     }
 }
 
