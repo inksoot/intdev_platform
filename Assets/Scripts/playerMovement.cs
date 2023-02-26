@@ -13,7 +13,7 @@ public class playerMovement : MonoBehaviour
 
     public float castDist = 0.2f;
     public float gravityScale = 5f;
-    public float gravityFall = 40f;
+    public float gravityFall = 10f;
     public float jumpLimit = 2f;
 
     Animator myAnim;
@@ -44,6 +44,10 @@ public class playerMovement : MonoBehaviour
         //{ newPos.x -= horizontalMove; }
 
        // transform.position = newPos;
+       if (Input.GetButtonDown("Jump"))
+        {
+            print("a");
+        }
         if (Input.GetButtonDown("Jump") && grounded)
         {
             jump = true;
