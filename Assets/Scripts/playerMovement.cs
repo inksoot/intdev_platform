@@ -111,7 +111,11 @@ public class playerMovement : MonoBehaviour
 
             SceneManager.LoadScene("Level2");
             //SceneManager.LoadScene(2);
-        } 
+        }
+        if(keyObtain && collision.gameObject.name == "endingdoor")
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
     }
 }
 
